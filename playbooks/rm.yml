@@ -1,0 +1,11 @@
+---
+
+- name: Routing BGP         
+  hosts: all
+  connection: local
+  gather_facts: no
+  
+  tasks:
+  - include_vars: ../defaults/main.yml
+  
+  - include_tasks: ../tasks/rm.yml
