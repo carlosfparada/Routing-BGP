@@ -41,7 +41,7 @@
         verbosity: 2
     - name: Cisco IOS BGP config with resource module
       cisco.ios.ios_bgp_global:
-        config: "{{ bgp_nxos_global_config }}"
+        config: "{{ bgp_ios_global_config }}"
         state: "{{ bgp_rm_state }}"
       register: _ios_bgp_config
     - debug: 
