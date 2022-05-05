@@ -34,7 +34,7 @@
   - name: Cisco IOS BGP config template based
     cisco.ios.ios_config:
       lines: "{{ q('template', '../templates/ios_bgp.j2') }}"
-      diff_ignore_lines: '.*exit.*'
+      #diff_ignore_lines: '.*exit.*'
       match: line
     register: _ios_bgp_result
   - name: Cisco IOS debug
