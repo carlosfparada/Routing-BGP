@@ -1,4 +1,5 @@
 {#
+feature bgp
 router bgp 45000
   log-neighbor-changes
   neighbor 192.168.1.11 remote-as 11000
@@ -14,6 +15,7 @@ router bgp 45000
     address-family ipv4 unicast
     neighbor 192.168.1.13 remote-as 13000
 #}
+feature bgp
 router bgp {{ bgp_nxos_global_config.as_number }}
 {% if bgp_nxos_global_config.bestpath is defined %}
 {% if bgp_nxos_global_config.bestpath.as_path is defined and bgp_nxos_global_config.bestpath.as_path.multipath_relax %}
