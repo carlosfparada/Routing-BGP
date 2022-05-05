@@ -20,9 +20,10 @@
     - debug: 
         var: _nxos_bgp_config
         verbosity: 2
-    - name: BGP neighbor address-family configuration
-      cisco.nxos.nxos_bgp_neighbor_af:
-        "{{ item }}"
-      loop: "{{ bgp_nxos_af_config }}"
+    # deprecated, removed after 2023-02-24
+    #- name: BGP neighbor address-family configuration
+    #  cisco.nxos.nxos_bgp_neighbor_af:
+    #    "{{ item }}"
+    #  loop: "{{ bgp_nxos_af_config }}"
   when: ansible_network_os == 'nxos'
   tags: [always]
