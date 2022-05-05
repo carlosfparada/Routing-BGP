@@ -3,7 +3,7 @@
 
 - name: Cisco NX-OS
   block:
-    - name: Pull current config
+    - name: Cisco NX-OS Pull current config
       cisco.nxos.nxos_facts:
         gather_subset: min
         gather_network_resources: 
@@ -12,7 +12,7 @@
     - debug: 
         var: _nxos_facts.ansible_facts.ansible_network_resources | to_nice_yaml
         verbosity: 2
-    - name: BGP config with resource module
+    - name: Cisco NX-OS BGP config with resource module
       cisco.nxos.nxos_bgp_global:
         config: "{{ bgp_nxos_global_config }}"
         state: "{{ bgp_rm_state }}"
@@ -30,7 +30,7 @@
 
 - name: Cisco IOS
   block:
-    - name: Pull current config
+    - name: Cisco IOS Pull current config
       cisco.ios.ios_facts:
         gather_subset: min
         gather_network_resources: 
@@ -39,7 +39,7 @@
     - debug: 
         var: _ios_facts.ansible_facts.ansible_network_resources | to_nice_yaml
         verbosity: 2
-    - name: BGP config with resource module
+    - name: Cisco IOS BGP config with resource module
       cisco.ios.ios_bgp_global:
         config: "{{ bgp_nxos_global_config }}"
         state: "{{ bgp_rm_state }}"
