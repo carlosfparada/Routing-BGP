@@ -16,15 +16,34 @@ router bgp 45000
   network 172.21.1.0 mask 255.255.255.0
 #}
 
+  vrfs:
+    - vrf: vrf1
+      rd: "11:11"
+      neighbors:
+        - neighbor_address: 192.168.1.11
+          remote_as: '11000'
+    - vrf: vrf2
+      rd: "22:22"
+      neighbors:
+        - neighbor_address: 192.168.1.12
+          remote_as: '12000'
+
 router bgp {{ bgp_nxos_global_config.as_number }}
  bgp log-neighbor-changes
 {% for neighbor in bgp_nxos_global_config.neighbors %}
  neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
 {% endfor %}
 {% for neighbor in bgp_nxos_global_config.neighbors %}
- address-family ipv4 vrf {{ neighbor.neighbor_address }}
+ address-family ipv4 {{ neighbor.neighbor_address }}
   neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
   neighbor {{ neighbor.neighbor_address }} activate
+  network {{ bgp_nxos_global_config.network }} mask {{ bgp_nxos_global_config.netmask}}
+{% endfor %}
+{% for vrf in bgp_nxos_global_config.vrfs %}
+ address-family ipv4 vrf {{ vrf.vrf }}
+  {% for neighbor in vrf.neighbors %}
+   neighbor {{ neighbor.neighbor_address }} activate  
+  {% endfor %}
   network {{ bgp_nxos_global_config.network }} mask {{ bgp_nxos_global_config.netmask}}
 {% endfor %}
 
