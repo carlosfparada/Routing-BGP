@@ -4,8 +4,6 @@ bgp_rm_state: replaced
 
 bgp_nxos_global_config:
   as_number: '45000'
-  #network: 172.16.1.0
-  #netmask: 255.255.255.0
   log_neighbor_changes: true
   bestpath:
     as_path:
@@ -20,12 +18,10 @@ bgp_nxos_global_config:
       remote_as: '13000'
   vrfs:
     - vrf: vrf1
-      #rd: "11:11"
       neighbors:
         - neighbor_address: 192.168.1.11
           remote_as: '11000'
     - vrf: vrf2
-      #rd: "22:22"
       neighbors:
         - neighbor_address: 192.168.1.12
           remote_as: '12000'
