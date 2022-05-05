@@ -1,4 +1,3 @@
 {% for vrf in bgp_nxos_global_config.vrfs %}
 ip vrf {{ vrf.vrf }}
-# rd {{ vrf.rd }}
 {% endfor %}
