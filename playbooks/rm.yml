@@ -1,7 +1,7 @@
 ---
 
 - name: Routing BGP         
-  hosts: router, nxos
+  hosts: nxos
   connection: local
   gather_facts: no
   
