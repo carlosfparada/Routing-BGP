@@ -2,20 +2,21 @@
 
 - name: Cisco NX-OS
   block:
-  - name: VRF config
+  - name: Cisco NXOS VRF config
     cisco.nxos.nxos_config:
       lines: "{{ q('template', '../templates/nxos_vrf.j2') }}"
     register: _nxos_vrf_result    
   - debug:
       var: _nxos_vrf_result
       verbosity: 2
-  - name: BGP config template based
+  - name: Cisco NXOS BGP config template based
     cisco.nxos.nxos_config:
       lines: "{{ q('template', '../templates/nxos_bgp.j2') }}"
       diff_ignore_lines: '.*exit.*'
       match: line
     register: _nxos_bgp_result
-  - debug: 
+  - name: Cisco NXOS debug
+    debug: 
       var: _nxos_bgp_result
       verbosity: 2
   when: ansible_network_os == 'nxos'
@@ -23,20 +24,21 @@
 
 - name: Cisco IOS
   block:
-  - name: VRF config
-    cisco.ios.ios_config:
-      lines: "{{ q('template', '../templates/ios_vrf.j2') }}"
-    register: _ios_vrf_result    
-  - debug:
-      var: _ios_vrf_result
-      verbosity: 2
-  - name: BGP config template based
+#  - name: VRF config
+#    cisco.ios.ios_config:
+#      lines: "{{ q('template', '../templates/ios_vrf.j2') }}"
+#    register: _ios_vrf_result    
+#  - debug:
+#      var: _ios_vrf_result
+#      verbosity: 2
+  - name: Cisco IOS BGP config template based
     cisco.ios.ios_config:
       lines: "{{ q('template', '../templates/ios_bgp.j2') }}"
       diff_ignore_lines: '.*exit.*'
       match: line
     register: _ios_bgp_result
-  - debug: 
+  - name: Cisco IOS debug
+    debug: 
       var: _ios_bgp_result
       verbosity: 2
   when: ansible_network_os == 'ios'
