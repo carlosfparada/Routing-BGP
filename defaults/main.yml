@@ -4,6 +4,7 @@ bgp_rm_state: replaced
 
 bgp_nxos_global_config:
   as_number: '45000'
+  router_id: "{{ ansible_host }}"
   log_neighbor_changes: true
   bestpath:
     as_path:
