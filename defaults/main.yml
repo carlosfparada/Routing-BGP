@@ -4,6 +4,7 @@ bgp_rm_state: replaced
 
 bgp_nxos_global_config:
   as_number: '45000'
+  network: 172.16.1.0
   netmask: 255.255.255.0
   log_neighbor_changes: true
   bestpath:

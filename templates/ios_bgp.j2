@@ -21,14 +21,14 @@ router bgp 45000
 
 router bgp {{ bgp_nxos_global_config.as_number }}
  bgp log-neighbor-changes
-{% for item in bgp_nxos_global_config.neighbors %}
- neighbor {{ item.neighbor_address }} remote-as {{ item.remote_as }}
+{% for neighbor in bgp_nxos_global_config.neighbors %}
+ neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
 {% endfor %}
-{% for item in bgp_nxos_global_config.as_number %}
- address-family ipv4 vrf {{ item.neighbor_address }}
-  neighbor {{ item.neighbor_address }} remote-as {{ item.remote_as }}
-  neighbor {{ item.neighbor_address }} activate
-  network {{ item.network }} mask {{ item.netmask}}
+{% for neighbor in bgp_nxos_global_config.neighbors %}
+ address-family ipv4 vrf {{ neighbor.neighbor_address }}
+  neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
+  neighbor {{ neighbor.neighbor_address }} activate
+  network {{ bgp_nxos_global_config.network }} mask {{ bgp_nxos_global_config.netmask}}
  exit-address-family
 {% endfor %}
 
