@@ -24,13 +24,13 @@
 
 - name: Cisco IOS
   block:
-#  - name: VRF config
-#    cisco.ios.ios_config:
-#      lines: "{{ q('template', '../templates/ios_vrf.j2') }}"
-#    register: _ios_vrf_result    
-#  - debug:
-#      var: _ios_vrf_result
-#      verbosity: 2
+  - name: VRF config
+    cisco.ios.ios_config:
+      lines: "{{ q('template', '../templates/ios_vrf.j2') }}"
+    register: _ios_vrf_result    
+  - debug:
+      var: _ios_vrf_result
+      verbosity: 2
   - name: Cisco IOS BGP config template based
     cisco.ios.ios_config:
       lines: "{{ q('template', '../templates/ios_bgp.j2') }}"
