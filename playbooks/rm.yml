@@ -1,7 +1,7 @@
 ---
 
 - name: Routing BGP         
-  hosts: all
+  hosts: router
   connection: local
   gather_facts: no
   
