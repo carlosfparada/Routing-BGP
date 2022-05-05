@@ -98,9 +98,10 @@ bgp_nxos_global_config:
 
   bgp_ios_global_config:
     as_number: '45000'
-    router_id:
-      address: "{{ ansible_host }}"
-    log_neighbor_changes: true
+    bgp:
+      router_id:
+        address: "{{ ansible_host }}"
+      log_neighbor_changes: true
     neighbor:
       - address: 192.168.1.11
         remote_as: '11000'
