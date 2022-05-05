@@ -18,15 +18,16 @@ router bgp 45000
   network 172.21.1.0 mask 255.255.255.0
   exit-address-family
 #}
-router bgp {{ bgp.id }}
+
+router bgp {{ bgp_nxos_global_config.as_number }}
  bgp log-neighbor-changes
-{% for item in bgp.vrfs %}
- neighbor {{ item.neighbor }} remote-as {{ item.as }}
+{% for item in bgp_nxos_global_config.neighbors %}
+ neighbor {{ item.neighbor_address }} remote-as {{ item.remote_as }}
 {% endfor %}
-{% for item in bgp.vrfs %}
- address-family ipv4 vrf {{ item.name }}
-  neighbor {{ item.neighbor }} remote-as {{ item.as }}
-  neighbor {{ item.neighbor }} activate
+{% for item in bgp_nxos_global_config.as_number %}
+ address-family ipv4 vrf {{ item.neighbor_address }}
+  neighbor {{ item.neighbor_address }} remote-as {{ item.remote_as }}
+  neighbor {{ item.neighbor_address }} activate
   network {{ item.network }} mask {{ item.netmask}}
  exit-address-family
 {% endfor %}
