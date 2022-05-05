@@ -1,3 +1,4 @@
+feature bgp
 {% for vrf in bgp_nxos_global_config.vrfs %}
 ip vrf {{ vrf.vrf }}
 {% endfor %}
