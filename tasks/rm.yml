@@ -3,7 +3,7 @@
 
 - name: Cisco NX-OS
   block:
-    - name: pull current config
+    - name: Pull current config
       cisco.nxos.nxos_facts:
         gather_subset: min
         gather_network_resources: 
