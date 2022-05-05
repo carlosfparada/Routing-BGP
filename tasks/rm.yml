@@ -27,3 +27,25 @@
     #  loop: "{{ bgp_nxos_af_config }}"
   when: ansible_network_os == 'nxos'
   tags: [always]
+
+- name: Cisco IOS
+  block:
+    - name: Pull current config
+      cisco.ios.ios_facts:
+        gather_subset: min
+        gather_network_resources: 
+          - "bgp_global"
+      register: _ios_facts
+    - debug: 
+        var: _ios_facts.ansible_facts.ansible_network_resources | to_nice_yaml
+        verbosity: 2
+    - name: BGP config with resource module
+      cisco.ios.ios_bgp_global:
+        config: "{{ bgp_ios_global_config }}"
+        state: "{{ bgp_rm_state }}"
+      register: _ios_bgp_config
+    - debug: 
+        var: _ios_bgp_config
+        verbosity: 2
+  when: ansible_network_os == 'ios'
+  tags: [always]
