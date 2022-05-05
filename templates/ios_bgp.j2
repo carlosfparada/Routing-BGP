@@ -29,6 +29,5 @@ router bgp {{ bgp_nxos_global_config.as_number }}
   neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
   neighbor {{ neighbor.neighbor_address }} activate
   network {{ bgp_nxos_global_config.network }} mask {{ bgp_nxos_global_config.netmask}}
- exit-address-family
 {% endfor %}
 
