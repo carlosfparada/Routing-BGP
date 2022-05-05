@@ -22,7 +22,7 @@ router bgp {{ bgp_nxos_global_config.as_number }}
  neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
 {% endfor %}
 {% for neighbor in bgp_nxos_global_config.neighbors %}
- address-family ipv4 {{ neighbor.neighbor_address }}
+ address-family ipv4 unicast
   neighbor {{ neighbor.neighbor_address }} remote-as {{ neighbor.remote_as }}
   neighbor {{ neighbor.neighbor_address }} activate
   network {{ bgp_nxos_global_config.network }} mask {{ bgp_nxos_global_config.netmask}}
